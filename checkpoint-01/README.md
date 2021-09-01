@@ -17,8 +17,8 @@
 4. Pull request.
 
     Clique no botão pull request do seu repositório.
-
-
+  
+  
 # Organização do repositório
 
 A raiz do repositório deve conter apenas a pasta com o nome do checkpoint-01. Dentro desta pasta, deve conter apenas outras pastas.
