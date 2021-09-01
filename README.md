@@ -1,4 +1,4 @@
-# Infra as Code (IAD)
+# Infra as Code (IaC)
 
 * Conceitos e objetivos iniciais sobre IaC.
 
