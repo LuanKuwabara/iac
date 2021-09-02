@@ -104,7 +104,7 @@ resource "aws_instance" "Nagios" {
     subnet_id = aws_subnet.Work_Public_Subnet.id
     key_name = "rsa_id"   
 }
-# provisioner
+# provisioner-checkpoint
 resource "aws_instance" "node_a" {
     ami = "ami-042e8287309f5df03"
     instance_type = "t2.micro"
