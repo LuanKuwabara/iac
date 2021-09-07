@@ -45,3 +45,18 @@ module "nagios" {
   tag                = "Nagios"
 }
 
+module "node01" {
+  source             = "../../engine-ec2/"
+  ami                = "ami-0f8243a5175208e08"
+  type_instance      = var.type_instance
+  ip_public          = true
+  key_ssh_name       = var.key_ssh_name
+  type_volume        = var.type_volume
+  size_volume        = var.size_volume
+  del_on_termination = var.del_on_termination
+  private_ip         = "10.0.0.15"
+  vpc_security_group_ids = [module.sg_nagios.sgoutput]
+  subnet_id          = module.vpca.subnet-dmz-0
+  tag                = "node01"
+}
+
