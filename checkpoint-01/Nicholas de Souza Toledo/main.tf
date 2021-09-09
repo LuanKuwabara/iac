@@ -63,7 +63,7 @@ resource "aws_route_table" "work_public_route_table_local" {
     vpc_peering_connection_id = ""
   }
 }
-# SECURITY GROUP PARA INSTANCIA
+# SECURITY GROUP PARA INSTANCIA.
 resource "aws_security_group" "Work_Nagios_Security_Group" {
   name = "Work_Nagios_Security_Group"
   description = "SG Nagios"
