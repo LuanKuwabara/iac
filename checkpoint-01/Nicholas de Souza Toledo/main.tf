@@ -24,7 +24,7 @@ resource "aws_internet_gateway" "Work_IGW" {
 
 # DEFINE A VPC
 resource "aws_vpc" "Work_VPC" {
-  cidr_block           = "10.0.0.0/24"
+  cidr_block           = "10.0.0.0/16"
   instance_tenancy     = "default"
   enable_dns_support   = "true"
   enable_dns_hostnames = "true"
@@ -37,7 +37,7 @@ resource "aws_vpc" "Work_VPC" {
 # DEFINE SUBNET
 resource "aws_subnet" "Work_Public_Subnet" {
   vpc_id                  = aws_vpc.Work_VPC.id
-  cidr_block              = "10.0.0.0/16"
+  cidr_block              = "10.0.0.0/24"
   map_public_ip_on_launch = "true"
   availability_zone       = "sa-east-1a"
 
@@ -52,7 +52,7 @@ resource "aws_route_table" "work_public_route_table_local" {
   vpc_id = aws_vpc.Work_VPC
 
   route {
-    cidr_block                = "0.0.0.0/0"
+    cidr_block                = "10.0.0.0/16"
     egress_only_gateway_id    = ""
     gateway_id                = aws_internet_gateway.Work_IGW
     instance_id               = ""
@@ -83,14 +83,14 @@ resource "aws_security_group" "Work_Nagios_Security_Group" {
       cidr_blocks = [ "10.0.0.0/16" ]
   }
   ingress {
-    from_port = 0
+    from_port = 22
     to_port = 22
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port = 0
+    from_port = 80
     to_port = 80
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
@@ -98,16 +98,24 @@ resource "aws_security_group" "Work_Nagios_Security_Group" {
 }
 
 # provisioner
-resource "aws_instance" "Nagios" {
+resource "aws_instance" "nagios" {
     ami = "ami-042e8287309f5df03"
     instance_type = "t2.micro"
     subnet_id = aws_subnet.Work_Public_Subnet.id
-    key_name = "checkpoint1"   
+    vpc_security_group_ids = [Work_Nagios_Security_Group]
+    key_name = "checkpoint1"
+      tags = {
+    Name = "nagios"
+  }   
 }
 # provisioner
 resource "aws_instance" "node_a" {
     ami = "ami-042e8287309f5df03"
     instance_type = "t2.micro"
     subnet_id = aws_subnet.Work_Public_Subnet.id
+    vpc_security_group_ids = [Work_Nagios_Security_Group]
     key_name = "checkpoint1"
+      tags = {
+    Name = "node_a"
+  }
 }
