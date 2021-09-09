@@ -52,7 +52,17 @@ resource "aws_route_table" "work_public_route_table_local" {
   vpc_id = aws_vpc.Work_VPC
 
   route {
-    cidr_block                = "10.0.0.0/16"
+    cidr_block                = "0.0.0.0/0"
+    egress_only_gateway_id    = ""
+    instance_id               = ""
+    #ipv6_cidr_block           = ""
+    nat_gateway_id            = ""
+    network_interface_id      = ""
+    transit_gateway_id        = ""
+    vpc_peering_connection_id = ""
+  }
+    route {
+    cidr_block                = "10.0.0.0/24"
     egress_only_gateway_id    = ""
     gateway_id                = aws_internet_gateway.Work_IGW
     instance_id               = ""
