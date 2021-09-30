@@ -8,7 +8,7 @@
 
     A forma mais simples de fazer isso é simplesmente arrastar os novos aquivos para o seu repositório ou clicar no botão upload files que fica no header.
 
-    ![Arquitetura](/images/arquitetura-nagios.png)
+    ![Arquitetura](/checkpoint-02/images/notify.drawio.png)
 
 3. Commit.
 
