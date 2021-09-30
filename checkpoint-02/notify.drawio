@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-09-30T02:38:31.041Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="ynMaUUXM4reKVbM3OU_y" version="15.3.8" type="github">
+<mxfile host="app.diagrams.net" modified="2021-09-30T02:39:36.136Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="VIpAq31BFS8JNVBP8c5w" version="15.3.8" type="github">
   <diagram id="ek9SvoUbZJLgTX0v-QCz" name="Page-1">
-    <mxGraphModel dx="2107" dy="-212" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2357" dy="-212" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -192,6 +192,10 @@
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="-186.0999999999999" y="1300.2" as="sourcePoint" />
             <mxPoint x="-140.1022691243602" y="1376.2680325448425" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-145" y="1467" />
+              <mxPoint x="-279" y="1467" />
+            </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="XL3TBwz9Qjr_CS2KYYFU-28" value="&lt;span&gt;&amp;nbsp;igw_vpc10&amp;nbsp;&lt;/span&gt;" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.internet_gateway;fillColor=#F58534;gradientColor=none;fontColor=#000000;fontSize=12;labelBackgroundColor=#ffffff;whiteSpace=wrap;labelBorderColor=#FFFFFF;shadow=1;labelPosition=center;" vertex="1" parent="1">
