@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-09-30T02:39:36.136Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="VIpAq31BFS8JNVBP8c5w" version="15.3.8" type="github">
+<mxfile host="app.diagrams.net" modified="2021-09-30T02:41:09.593Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36" etag="cc5iqiawP9jbgaocRhRq" version="15.3.8" type="github">
   <diagram id="ek9SvoUbZJLgTX0v-QCz" name="Page-1">
     <mxGraphModel dx="2357" dy="-212" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -17,13 +17,13 @@
           <mxGeometry x="-461" y="1915.26" width="723" height="161.56" as="geometry" />
         </mxCell>
         <mxCell id="XL3TBwz9Qjr_CS2KYYFU-20" value="" style="rounded=1;arcSize=10;dashed=1;strokeColor=#F59D56;fillColor=none;gradientColor=none;dashPattern=8 4;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="-559.5" y="1814.25" width="359.5" height="559.75" as="geometry" />
+          <mxGeometry x="-546" y="1814.25" width="346" height="559.75" as="geometry" />
         </mxCell>
         <mxCell id="XL3TBwz9Qjr_CS2KYYFU-21" value="" style="rounded=1;arcSize=10;dashed=0;fillColor=none;gradientColor=none;strokeWidth=2;" vertex="1" parent="1">
           <mxGeometry x="-499.72999999999996" y="1876.82" width="260.83" height="240" as="geometry" />
         </mxCell>
         <mxCell id="XL3TBwz9Qjr_CS2KYYFU-22" value="" style="rounded=1;arcSize=10;dashed=1;strokeColor=#F59D56;fillColor=none;gradientColor=none;dashPattern=8 4;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry y="1814" width="360" height="560" as="geometry" />
+          <mxGeometry y="1814" width="345" height="560" as="geometry" />
         </mxCell>
         <mxCell id="XL3TBwz9Qjr_CS2KYYFU-23" value="&lt;span&gt;vpc10&lt;/span&gt;&lt;span&gt;&lt;br&gt;10.0.0.0/16&lt;/span&gt;" style="dashed=0;html=1;shape=mxgraph.aws3.virtual_private_cloud;fillColor=#F58536;gradientColor=none;dashed=0;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;labelBackgroundColor=#ffffff;labelBorderColor=#FFFFFF;shadow=1;" vertex="1" parent="1">
           <mxGeometry x="-589.9999999999999" y="1666.0000000000002" width="52" height="36" as="geometry" />
