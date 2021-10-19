@@ -30,4 +30,3 @@ Dentro dela organize os materais por nome completo do aluno. Por exemplo:
 │   └── Renato Fernandes
 │       └── template.tf
 ```
-
