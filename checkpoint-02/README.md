@@ -26,7 +26,7 @@ A raiz do repositório deve conter apenas a pasta com o nome do checkpoint-02. D
 Dentro dela organize os materais por nome completo do aluno. Por exemplo:
 
 ```
-├── checkpoint-01
+├── checkpoint-02
 │   └── Renato Fernandes
 │       └── template.tf
 ```
