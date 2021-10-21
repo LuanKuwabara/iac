@@ -76,11 +76,21 @@ resource "aws_subnet" "sn_vpc10_priv_1c" {
 
 # Elastic IP
 resource "aws_eip" "eip_1" {
-  vpc = true
+  depends_on = [aws_internet_gateway.igw_vpc10]
+  vpc        = true
+
+  tags = {
+    "Name" = "eip_pub_1a"
+  }
 }
 
 resource "aws_eip" "eip_2" {
-  vpc = true
+  depends_on = [aws_internet_gateway.igw_vpc10]
+  vpc        = true
+
+  tags = {
+    "Name" = "eip_pub_1c"
+  }
 }
 
 # NAT Gateway
@@ -118,11 +128,24 @@ resource "aws_route_table" "rt_pub" {
   }
 }
 
+resource "aws_route_table" "rt_pub_1c" {
+  vpc_id = aws_vpc.vpc10.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw_vpc10.id
+  }
+
+  tags = {
+    "Name" = "rt_pub_1c"
+  }
+}
+
 resource "aws_route_table" "rt_priv_1a" {
   vpc_id = aws_vpc.vpc10.id
 
   route {
-    cidr_block     = "10.0.3.0/24"
+    cidr_block     = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.ngw_pub_1.id
   }
 
@@ -135,7 +158,7 @@ resource "aws_route_table" "rt_priv_1c" {
   vpc_id = aws_vpc.vpc10.id
 
   route {
-    cidr_block     = "10.0.4.0/24"
+    cidr_block     = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.ngw_pub_2.id
   }
 
@@ -152,7 +175,7 @@ resource "aws_route_table_association" "rta_pub_1a" {
 
 resource "aws_route_table_association" "rta_pub_1c" {
   subnet_id      = aws_subnet.sn_vpc10_pub_1c.id
-  route_table_id = aws_route_table.rt_pub.id
+  route_table_id = aws_route_table.rt_pub_1c.id
 }
 
 resource "aws_route_table_association" "rta_priv_1a" {
@@ -189,6 +212,14 @@ resource "aws_security_group" "asg_ws" {
   }
 
   ingress {
+    description = "TCP/22 from All"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
     description = "TCP/80 from All"
     from_port   = 80
     to_port     = 80
@@ -222,6 +253,14 @@ resource "aws_security_group" "asg_rds" {
     cidr_blocks = ["10.0.1.0/24", "10.0.2.0/24"]
   }
 
+  ingress {
+    description = "All from 10.0.0.0/16"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   tags = {
     "Name" = "asg_rds"
   }
@@ -233,6 +272,38 @@ resource "aws_instance" "ws_1" {
   instance_type          = "t2.micro"
   subnet_id              = aws_subnet.sn_vpc10_pub_1a.id
   vpc_security_group_ids = [aws_security_group.asg_ws.id]
+  user_data              = <<-EOF
+#!/bin/bash
+
+# Update with latest packages
+yum update -y
+
+# Install Apache
+yum install -y httpd mysql php php-mysql php-mysqlnd php-pdo telnet tree git
+
+# Enable Apache service to start after reboot
+sudo systemctl enable httpd
+
+# Config connect to DB
+cat <<EOT >> /var/www/config.php
+<?php
+
+define('DB_SERVER', 'DB_SERVER');
+define('DB_USERNAME', 'DB_USERNAME');
+define('DB_PASSWORD', 'DB_PASSWORD');
+define('DB_DATABASE', 'DB_DATABASE');
+
+?>
+EOT
+
+# Install application
+cd /tmp
+git clone https://github.com/kledsonhugo/notifier
+cp /tmp/notifier/public/index.php /var/www/html/
+
+# Start Apache service
+service httpd restart
+EOF
 
   tags = {
     "Name" = "ws_1"
@@ -244,6 +315,38 @@ resource "aws_instance" "ws_2" {
   instance_type          = "t2.micro"
   subnet_id              = aws_subnet.sn_vpc10_pub_1a.id
   vpc_security_group_ids = [aws_security_group.asg_ws.id]
+  user_data              = <<-EOF
+#!/bin/bash
+
+# Update with latest packages
+yum update -y
+
+# Install Apache
+yum install -y httpd mysql php php-mysql php-mysqlnd php-pdo telnet tree git
+
+# Enable Apache service to start after reboot
+sudo systemctl enable httpd
+
+# Config connect to DB
+cat <<EOT >> /var/www/config.php
+<?php
+
+define('DB_SERVER', 'DB_SERVER');
+define('DB_USERNAME', 'DB_USERNAME');
+define('DB_PASSWORD', 'DB_PASSWORD');
+define('DB_DATABASE', 'DB_DATABASE');
+
+?>
+EOT
+
+# Install application
+cd /tmp
+git clone https://github.com/kledsonhugo/notifier
+cp /tmp/notifier/public/index.php /var/www/html/
+
+# Start Apache service
+service httpd restart
+EOF
 
   tags = {
     "Name" = "ws_2"
@@ -255,6 +358,38 @@ resource "aws_instance" "ws_3" {
   instance_type          = "t2.micro"
   subnet_id              = aws_subnet.sn_vpc10_pub_1c.id
   vpc_security_group_ids = [aws_security_group.asg_ws.id]
+  user_data              = <<-EOF
+#!/bin/bash
+
+# Update with latest packages
+yum update -y
+
+# Install Apache
+yum install -y httpd mysql php php-mysql php-mysqlnd php-pdo telnet tree git
+
+# Enable Apache service to start after reboot
+sudo systemctl enable httpd
+
+# Config connect to DB
+cat <<EOT >> /var/www/config.php
+<?php
+
+define('DB_SERVER', 'DB_SERVER');
+define('DB_USERNAME', 'DB_USERNAME');
+define('DB_PASSWORD', 'DB_PASSWORD');
+define('DB_DATABASE', 'DB_DATABASE');
+
+?>
+EOT
+
+# Install application
+cd /tmp
+git clone https://github.com/kledsonhugo/notifier
+cp /tmp/notifier/public/index.php /var/www/html/
+
+# Start Apache service
+service httpd restart
+EOF
 
   tags = {
     "Name" = "ws_3"
@@ -266,6 +401,38 @@ resource "aws_instance" "ws_4" {
   instance_type          = "t2.micro"
   subnet_id              = aws_subnet.sn_vpc10_pub_1c.id
   vpc_security_group_ids = [aws_security_group.asg_ws.id]
+  user_data              = <<-EOF
+#!/bin/bash
+
+# Update with latest packages
+yum update -y
+
+# Install Apache
+yum install -y httpd mysql php php-mysql php-mysqlnd php-pdo telnet tree git
+
+# Enable Apache service to start after reboot
+sudo systemctl enable httpd
+
+# Config connect to DB
+cat <<EOT >> /var/www/config.php
+<?php
+
+define('DB_SERVER', 'DB_SERVER');
+define('DB_USERNAME', 'DB_USERNAME');
+define('DB_PASSWORD', 'DB_PASSWORD');
+define('DB_DATABASE', 'DB_DATABASE');
+
+?>
+EOT
+
+# Install application
+cd /tmp
+git clone https://github.com/kledsonhugo/notifier
+cp /tmp/notifier/public/index.php /var/www/html/
+
+# Start Apache service
+service httpd restart
+EOF
 
   tags = {
     "Name" = "ws_4"
@@ -283,7 +450,7 @@ resource "aws_sns_topic" "sns_app" {
 
 resource "aws_sns_topic_subscription" "sns_notificacao" {
   topic_arn = aws_sns_topic.sns_app.arn
-  protocol  = "email" # Poderia ser SMS, neste caso o endpoint abaixo seria o número de telefone do usuário
+  protocol  = "email"                 # Poderia ser SMS, neste caso o endpoint abaixo seria o número de telefone do usuário
   endpoint  = "teste.teste@gmail.com" # Para o checkpoint coloquei um email genérico
 }
 
@@ -324,19 +491,23 @@ resource "aws_elb" "elb_ws" {
 resource "aws_db_subnet_group" "db_subnet" {
   name       = "db_subnet"
   subnet_ids = [aws_subnet.sn_vpc10_pub_1a.id, aws_subnet.sn_vpc10_pub_1c.id]
+
+  tags = {
+    "Name" = "db_subnet"
+  }
 }
 
 resource "aws_db_instance" "db_rds" {
-  allocated_storage      = 10
+  allocated_storage      = 20
   engine                 = "mysql"
   engine_version         = "5.7"
-  instance_class         = "db.t3.micro"
+  instance_class         = "db.t2.micro"
   name                   = "dbrds"
   username               = "db_admin"
   password               = "lucas_db_rds"
   parameter_group_name   = "default.mysql5.7"
-  multi_az               = true
   storage_type           = "gp2"
+  multi_az               = true
   skip_final_snapshot    = true
   db_subnet_group_name   = aws_db_subnet_group.db_subnet.name
   vpc_security_group_ids = [aws_security_group.asg_rds.id]
@@ -345,4 +516,8 @@ resource "aws_db_instance" "db_rds" {
   tags = {
     "Name" = "db_rds"
   }
+}
+
+output "rds_endpoint" {
+  value = aws_db_instance.db_rds.endpoint
 }
