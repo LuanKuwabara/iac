@@ -14,4 +14,4 @@
   - AWS CloudFormation
   - HashiCorp Terraform
   - Puppet
-  - RedHat Ansible
+  - RedHat Ansible 
