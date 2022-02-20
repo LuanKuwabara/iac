@@ -29,4 +29,4 @@ Dentro dela organize os materais por nome completo do aluno. Por exemplo:
 ├── checkpoint-02
 │   └── Renato Fernandes
 │       └── template.tf
-```
+``` 
