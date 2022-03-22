@@ -592,9 +592,296 @@ A infraestrutura que o Terraform pode gerenciar inclui componentes de baixo nív
 
     ```
     $ terraform destroy
+    aws_vpc.Hello_VPC: Refreshing state... [id=vpc-05c18fa79e3cf13bb]
+    aws_internet_gateway.Hello_IGW: Refreshing state... [id=igw-0594754f298c08708]
+    aws_subnet.Hello_Public_Subnet: Refreshing state... [id=subnet-04fb9d1a931453e7b]
+    aws_security_group.Hello_Security_Group: Refreshing state... [id=sg-086216425404b38ee]
+    aws_route_table.Hello_Public_Route_Table: Refreshing state... [id=rtb-0dc2d40297c7c76b1]
+    aws_instance.hello-isntance: Refreshing state... [id=i-0f2dceb998f47c054]
+    aws_route_table_association.a: Refreshing state... [id=rtbassoc-01d3e3f930046f5bc]
+
     Terraform used the selected providers to generate the following execution plan. Resource actions are
     indicated with the following symbols:
       - destroy
-      ...
+
+    Terraform will perform the following actions:
+
+      # aws_instance.hello-isntance will be destroyed
+      - resource "aws_instance" "hello-isntance" {
+          - ami                                  = "ami-0c02fb55956c7d316" -> null
+          - arn                                  = "arn:aws:ec2:us-east-1:095383030489:instance/i-0f2dceb998f47c054" -> null
+          - associate_public_ip_address          = true -> null
+          - availability_zone                    = "us-east-1a" -> null
+          - cpu_core_count                       = 1 -> null
+          - cpu_threads_per_core                 = 1 -> null
+          - disable_api_termination              = false -> null
+          - ebs_optimized                        = false -> null
+          - get_password_data                    = false -> null
+          - hibernation                          = false -> null
+          - id                                   = "i-0f2dceb998f47c054" -> null
+          - instance_initiated_shutdown_behavior = "stop" -> null
+          - instance_state                       = "running" -> null
+          - instance_type                        = "t2.micro" -> null
+          - ipv6_address_count                   = 0 -> null
+          - ipv6_addresses                       = [] -> null
+          - monitoring                           = false -> null
+          - primary_network_interface_id         = "eni-04eec5d87133cb44a" -> null
+          - private_dns                          = "ip-10-0-0-47.ec2.internal" -> null
+          - private_ip                           = "10.0.0.47" -> null
+          - public_dns                           = "ec2-52-73-114-9.compute-1.amazonaws.com" -> null
+          - public_ip                            = "52.73.114.9" -> null
+          - secondary_private_ips                = [] -> null
+          - security_groups                      = [] -> null
+          - source_dest_check                    = true -> null
+          - subnet_id                            = "subnet-04fb9d1a931453e7b" -> null
+          - tags                                 = {
+              - "Name" = "hellow-isntance"
+            } -> null
+          - tags_all                             = {
+              - "Name" = "hellow-isntance"
+            } -> null
+          - tenancy                              = "default" -> null
+          - vpc_security_group_ids               = [
+              - "sg-086216425404b38ee",
+            ] -> null
+
+          - capacity_reservation_specification {
+              - capacity_reservation_preference = "open" -> null
+            }
+
+          - credit_specification {
+              - cpu_credits = "standard" -> null
+            }
+
+          - enclave_options {
+              - enabled = false -> null
+            }
+
+          - metadata_options {
+              - http_endpoint               = "enabled" -> null
+              - http_put_response_hop_limit = 1 -> null
+              - http_tokens                 = "optional" -> null
+              - instance_metadata_tags      = "disabled" -> null
+            }
+
+          - root_block_device {
+              - delete_on_termination = true -> null
+              - device_name           = "/dev/xvda" -> null
+              - encrypted             = false -> null
+              - iops                  = 100 -> null
+              - tags                  = {} -> null
+              - throughput            = 0 -> null
+              - volume_id             = "vol-04e49c1ed6699c838" -> null
+              - volume_size           = 8 -> null
+              - volume_type           = "gp2" -> null
+            }
+        }
+
+      # aws_internet_gateway.Hello_IGW will be destroyed
+      - resource "aws_internet_gateway" "Hello_IGW" {
+          - arn      = "arn:aws:ec2:us-east-1:095383030489:internet-gateway/igw-0594754f298c08708" -> null     
+          - id       = "igw-0594754f298c08708" -> null
+          - owner_id = "095383030489" -> null
+          - tags     = {
+              - "Name" = "Hello IGW"
+            } -> null
+          - tags_all = {
+              - "Name" = "Hello IGW"
+            } -> null
+          - vpc_id   = "vpc-05c18fa79e3cf13bb" -> null
+        }
+
+      # aws_route_table.Hello_Public_Route_Table will be destroyed
+      - resource "aws_route_table" "Hello_Public_Route_Table" {
+          - arn              = "arn:aws:ec2:us-east-1:095383030489:route-table/rtb-0dc2d40297c7c76b1" -> null  
+          - id               = "rtb-0dc2d40297c7c76b1" -> null
+          - owner_id         = "095383030489" -> null
+          - propagating_vgws = [] -> null
+          - route            = [
+              - {
+                  - carrier_gateway_id         = ""
+                  - cidr_block                 = "0.0.0.0/0"
+                  - destination_prefix_list_id = ""
+                  - egress_only_gateway_id     = ""
+                  - gateway_id                 = "igw-0594754f298c08708"
+                  - instance_id                = ""
+                  - ipv6_cidr_block            = ""
+                  - local_gateway_id           = ""
+                  - nat_gateway_id             = ""
+                  - network_interface_id       = ""
+                  - transit_gateway_id         = ""
+                  - vpc_endpoint_id            = ""
+                  - vpc_peering_connection_id  = ""
+                },
+            ] -> null
+          - tags             = {
+              - "Name" = "Hello Public Route Table"
+            } -> null
+          - tags_all         = {
+              - "Name" = "Hello Public Route Table"
+            } -> null
+          - vpc_id           = "vpc-05c18fa79e3cf13bb" -> null
+        }
+
+      # aws_route_table_association.a will be destroyed
+      - resource "aws_route_table_association" "a" {
+          - id             = "rtbassoc-01d3e3f930046f5bc" -> null
+          - route_table_id = "rtb-0dc2d40297c7c76b1" -> null
+          - subnet_id      = "subnet-04fb9d1a931453e7b" -> null
+        }
+
+      # aws_security_group.Hello_Security_Group will be destroyed
+      - resource "aws_security_group" "Hello_Security_Group" {
+          - arn                    = "arn:aws:ec2:us-east-1:095383030489:security-group/sg-086216425404b38ee" -> null
+          - description            = "Hello Security Group" -> null
+          - egress                 = [
+              - {
+                  - cidr_blocks      = [
+                      - "0.0.0.0/0",
+                    ]
+                  - description      = "All to All"
+                  - from_port        = 0
+                  - ipv6_cidr_blocks = []
+                  - prefix_list_ids  = []
+                  - protocol         = "-1"
+                  - security_groups  = []
+                  - self             = false
+                  - to_port          = 0
+                },
+            ] -> null
+          - id                     = "sg-086216425404b38ee" -> null
+          - ingress                = [
+              - {
+                  - cidr_blocks      = [
+                      - "0.0.0.0/0",
+                    ]
+                  - description      = "TCP/22 from All"
+                  - from_port        = 22
+                  - ipv6_cidr_blocks = []
+                  - prefix_list_ids  = []
+                  - protocol         = "tcp"
+                  - security_groups  = []
+                  - self             = false
+                  - to_port          = 22
+                },
+              - {
+                  - cidr_blocks      = [
+                      - "0.0.0.0/0",
+                    ]
+                  - description      = "TCP/80 from All"
+                  - from_port        = 80
+                  - ipv6_cidr_blocks = []
+                  - prefix_list_ids  = []
+                  - protocol         = "tcp"
+                  - security_groups  = []
+                  - self             = false
+                  - to_port          = 80
+                },
+              - {
+                  - cidr_blocks      = [
+                      - "10.0.0.0/16",
+                    ]
+                  - description      = "All from 10.0.0.0/16"
+                  - from_port        = 0
+                  - ipv6_cidr_blocks = []
+                  - prefix_list_ids  = []
+                  - protocol         = "-1"
+                  - security_groups  = []
+                  - self             = false
+                  - to_port          = 0
+                },
+            ] -> null
+          - name                   = "Hello_Security_Group" -> null
+          - owner_id               = "095383030489" -> null
+          - revoke_rules_on_delete = false -> null
+          - tags                   = {
+              - "Name" = "Work Security Group"
+            } -> null
+          - tags_all               = {
+              - "Name" = "Work Security Group"
+            } -> null
+          - vpc_id                 = "vpc-05c18fa79e3cf13bb" -> null
+        }
+
+      # aws_subnet.Hello_Public_Subnet will be destroyed
+      - resource "aws_subnet" "Hello_Public_Subnet" {
+          - arn                                            = "arn:aws:ec2:us-east-1:095383030489:subnet/subnet-04fb9d1a931453e7b" -> null
+          - assign_ipv6_address_on_creation                = false -> null
+          - availability_zone                              = "us-east-1a" -> null
+          - availability_zone_id                           = "use1-az4" -> null
+          - cidr_block                                     = "10.0.0.0/24" -> null
+          - enable_dns64                                   = false -> null
+          - enable_resource_name_dns_a_record_on_launch    = false -> null
+          - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+          - id                                             = "subnet-04fb9d1a931453e7b" -> null
+          - ipv6_native                                    = false -> null
+          - map_customer_owned_ip_on_launch                = false -> null
+          - map_public_ip_on_launch                        = true -> null
+          - owner_id                                       = "095383030489" -> null
+          - private_dns_hostname_type_on_launch            = "ip-name" -> null
+          - tags                                           = {
+              - "Name" = "Hello Public Subnet"
+            } -> null
+          - tags_all                                       = {
+              - "Name" = "Hello Public Subnet"
+            } -> null
+          - vpc_id                                         = "vpc-05c18fa79e3cf13bb" -> null
+        }
+
+      # aws_vpc.Hello_VPC will be destroyed
+      - resource "aws_vpc" "Hello_VPC" {
+          - arn                              = "arn:aws:ec2:us-east-1:095383030489:vpc/vpc-05c18fa79e3cf13bb" -> null
+          - assign_generated_ipv6_cidr_block = false -> null
+          - cidr_block                       = "10.0.0.0/16" -> null
+          - default_network_acl_id           = "acl-0c478b15ea71a2a45" -> null
+          - default_route_table_id           = "rtb-0101d9b5c99bddf5a" -> null
+          - default_security_group_id        = "sg-01748e63b4ce43011" -> null
+          - dhcp_options_id                  = "dopt-039bff76f83af6215" -> null
+          - enable_classiclink               = false -> null
+          - enable_classiclink_dns_support   = false -> null
+          - enable_dns_hostnames             = true -> null
+          - enable_dns_support               = true -> null
+          - id                               = "vpc-05c18fa79e3cf13bb" -> null
+          - instance_tenancy                 = "default" -> null
+          - ipv6_netmask_length              = 0 -> null
+          - main_route_table_id              = "rtb-0101d9b5c99bddf5a" -> null
+          - owner_id                         = "095383030489" -> null
+          - tags                             = {
+              - "Name" = "Hello VPC"
+            } -> null
+          - tags_all                         = {
+              - "Name" = "Hello VPC"
+            } -> null
+        }
+
+    Plan: 0 to add, 0 to change, 7 to destroy.
+
+    Do you really want to destroy all resources?
+      Terraform will destroy all your managed infrastructure, as shown above.
+      There is no undo. Only 'yes' will be accepted to confirm.
+
+      Enter a value: yes
+
+    aws_route_table_association.a: Destroying... [id=rtbassoc-01d3e3f930046f5bc]
+    aws_instance.hello-isntance: Destroying... [id=i-0f2dceb998f47c054]
+    aws_route_table_association.a: Destruction complete after 2s
+    aws_route_table.Hello_Public_Route_Table: Destroying... [id=rtb-0dc2d40297c7c76b1]
+    aws_route_table.Hello_Public_Route_Table: Destruction complete after 2s
+    aws_internet_gateway.Hello_IGW: Destroying... [id=igw-0594754f298c08708]
+    aws_instance.hello-isntance: Still destroying... [id=i-0f2dceb998f47c054, 10s elapsed]
+    aws_internet_gateway.Hello_IGW: Still destroying... [id=igw-0594754f298c08708, 10s elapsed]
+    aws_instance.hello-isntance: Still destroying... [id=i-0f2dceb998f47c054, 20s elapsed]
+    aws_internet_gateway.Hello_IGW: Still destroying... [id=igw-0594754f298c08708, 20s elapsed]
+    aws_internet_gateway.Hello_IGW: Destruction complete after 23s
+    aws_instance.hello-isntance: Still destroying... [id=i-0f2dceb998f47c054, 30s elapsed]
+    aws_instance.hello-isntance: Destruction complete after 35s
+    aws_subnet.Hello_Public_Subnet: Destroying... [id=subnet-04fb9d1a931453e7b]
+    aws_security_group.Hello_Security_Group: Destroying... [id=sg-086216425404b38ee]
+    aws_security_group.Hello_Security_Group: Destruction complete after 2s
+    aws_subnet.Hello_Public_Subnet: Destruction complete after 2s
+    aws_vpc.Hello_VPC: Destroying... [id=vpc-05c18fa79e3cf13bb]
+    aws_vpc.Hello_VPC: Destruction complete after 1s
+
+    Destroy complete! Resources: 7 destroyed.
     ```
 
