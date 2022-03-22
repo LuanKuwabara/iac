@@ -1,6 +1,6 @@
 # Terraform Hello World
 
-##
+
 ## AWS Provider
 
 O [Terraform](https://www.terraform.io/) é uma ferramenta para construir, alterar e controlar a infraestrutura de forma segura e eficiente. O Terraform pode gerenciar provedores de serviços existentes e populares como OpenStack, Azure, AWS, Digital Ocean, entre outras, bem como soluções internas personalizadas.
@@ -9,7 +9,7 @@ Os arquivos de configuração do Terraform descrevem os componentes necessários
 
 A infraestrutura que o Terraform pode gerenciar inclui componentes de baixo nível, como instâncias de computação, armazenamento e redes, bem como componentes de alto nível, como entradas DNS, recursos SaaS, etc.
 
-##
+
 ## Pre-req Terraform
 
 1. Fazer o *download* do Terraform em https://releases.hashicorp.com/terraform/1.1.7/terraform_1.1.7_windows_386.zip
@@ -60,7 +60,7 @@ A infraestrutura que o Terraform pode gerenciar inclui componentes de baixo nív
       -version      An alias for the "version" subcommand.
     ```
 
-##
+
 ## Pre-req Conta AWS
 
 1. Abrir o *AWS Academy* e iniciar o ambiente SandBox.
@@ -84,7 +84,7 @@ A infraestrutura que o Terraform pode gerenciar inclui componentes de baixo nív
     Default output format [None]:
     ```
 
-##
+
 ## Pre-req Visual Studio Code com extensão do GitHub
 
 1. Abrir o *Visual Studio Code* e instalar a extensão *GitHub Pull Requests and Issues*.
@@ -293,7 +293,7 @@ A infraestrutura que o Terraform pode gerenciar inclui componentes de baixo nív
     
 7. Validar a criação da instância pelo AWS Console.
 
-    
+
 ## Clean-up
 
 1. Deletar o plano:
