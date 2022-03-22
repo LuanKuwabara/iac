@@ -12,7 +12,7 @@ A infraestrutura que o Terraform pode gerenciar inclui componentes de baixo nív
 
 1. Fazer o *download* do Terraform em https://releases.hashicorp.com/terraform/1.1.7/terraform_1.1.7_windows_386.zip
     
-2. Descomprimir o arquivo baixado no diretório C:\Windows\System32
+2. Descomprimir o arquivo baixado no diretório *C:\Windows\System32*
    
 3. Testar a instalação, abrindo o terminal de comando e digitando *terraform -h* como no exemplo abaixo.
 
@@ -60,7 +60,7 @@ A infraestrutura que o Terraform pode gerenciar inclui componentes de baixo nív
 
 ## Pre-req Conta AWS
 
-1. Abrir o AWS Academy e iniciar o ambiente SandBox.
+1. Abrir o *AWS Academy* e iniciar o ambiente SandBox.
 
 2. Capturar as credenciais de acesso da conta SandBox.
 
@@ -81,15 +81,17 @@ A infraestrutura que o Terraform pode gerenciar inclui componentes de baixo nív
     Default output format [None]:
     ```
 
-## Pre-req Visual Studio Code com plugi-in GitHub
+## Pre-req Visual Studio Code com extensão do GitHub
 
-1. Abrir o Visual Studio Code e instalar o plug-in GitHub.
+1. Abrir o *Visual Studio Code* e instalar a extensão *GitHub Pull Requests and Issues*.
 
-2. Baixar o *template*:
+   ![GitHub Extension](/hello/images/vscode-extension-github.png)
+
+2. Clonar o repositório *https://github.com/FIAP/iac*
 
     ```
     $ git clone https://github.com/FIAP/iac
-    Cloning into 'fiap'...
+    Cloning into 'iac'...
     remote: Enumerating objects: 10, done.
     remote: Counting objects: 100% (10/10), done.
     remote: Compressing objects: 100% (10/10), done.
@@ -118,7 +120,6 @@ A infraestrutura que o Terraform pode gerenciar inclui componentes de baixo nív
     # REGION
     provider "aws" {
         region = "us-east-1"
-        shared_credentials_file = ".aws/credentials"
     }
 
     # VPC
@@ -128,6 +129,102 @@ A infraestrutura que o Terraform pode gerenciar inclui componentes de baixo nív
 
         tags = {
             Name = "Hello VPC"  
+        }
+    }
+
+    # INTERNET GATEWAY
+    resource "aws_internet_gateway" "Hello_IGW" {
+        vpc_id = aws_vpc.Hello_VPC.id
+
+        tags = {
+            Name = "Hello IGW"
+        }
+    }
+
+    # SUBNET
+    resource "aws_subnet" "Hello_Public_Subnet" {
+        vpc_id                  = aws_vpc.Hello_VPC.id
+        cidr_block              = "10.0.0.0/24"
+        map_public_ip_on_launch = "true"
+        availability_zone       = "us-east-1a"
+
+        tags = {
+            Name = "Hello Public Subnet"
+        }
+    }
+
+    # ROUTE TABLE
+    resource "aws_route_table" "Hello_Public_Route_Table" {
+        vpc_id = aws_vpc.Hello_VPC.id
+
+        route {
+            cidr_block = "0.0.0.0/0"
+            gateway_id = aws_internet_gateway.Hello_IGW.id
+        }
+
+        tags = {
+            Name = "Hello Public Route Table"
+        }
+    }
+
+    # SUBNET ASSOCIATION
+    resource "aws_route_table_association" "a" {
+      subnet_id      = aws_subnet.Hello_Public_Subnet.id
+      route_table_id = aws_route_table.Hello_Public_Route_Table.id
+    }
+
+    # SECURITY GROUP
+    resource "aws_security_group" "Hello_Security_Group" {
+        name        = "Hello_Security_Group"
+        description = "Hello Security Group"
+        vpc_id      = aws_vpc.Hello_VPC.id
+
+        egress {
+            description = "All to All"
+            from_port   = 0
+            to_port     = 0
+            protocol    = "-1"
+            cidr_blocks = ["0.0.0.0/0"]
+        }
+
+        ingress {
+            description = "All from 10.0.0.0/16"
+            from_port   = 0
+            to_port     = 0
+            protocol    = "-1"
+            cidr_blocks = ["10.0.0.0/16"]
+        }
+
+        ingress {
+            description = "TCP/22 from All"
+            from_port   = 22
+            to_port     = 22
+            protocol    = "tcp"
+            cidr_blocks = ["0.0.0.0/0"]
+        }
+
+        ingress {
+            description = "TCP/80 from All"
+            from_port   = 80
+            to_port     = 80
+            protocol    = "tcp"
+            cidr_blocks = ["0.0.0.0/0"]
+        }
+
+        tags = {
+            Name = "Work Security Group"
+        }
+    }
+
+    # EC2 INSTANCE
+    resource "aws_instance" "hello-isntance" {
+        ami                    = "ami-0c02fb55956c7d316"
+        instance_type          = "t2.micro"
+        subnet_id              = aws_subnet.Hello_Public_Subnet.id
+        vpc_security_group_ids = [aws_security_group.Hello_Security_Group.id]
+
+        tags = {
+            Name = "hellow-isntance"
         }
     }
     ```
