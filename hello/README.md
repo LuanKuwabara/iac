@@ -281,11 +281,11 @@ A infraestrutura que o Terraform pode gerenciar inclui componentes de baixo nív
     - Colar as credenciais de acesso no arquivo *.aws/credentials*. O arquivo deverá ficar conforme abaixo.
 
     ```
-    $ cat .aws/credentials
+    $ cat ~/.aws/credentials 
     [default]
-aws_access_key_id = ASIAV2XAOBJRRVNBXJL2
-aws_secret_access_key = ew0xROrRLYino1QRxs1UXM7iMMIjJUjwnx9E3T
-aws_session_token = FwoGZXIvYXdzEJL//////////wEaDIgc/c1Uyie+Bt3GYiK9Af2HbYTytOORZ54uaoi28dLKhyTbQ8vmaSt9JySBxyAG0Yjx6WTr7L1YkW5CwWI0PpxMP7QzuiTBoAJ/54kHgH1H2MtXk15BO+iFScMcz714LU3MvkTa5F1kWWwxPgHHXG69A0nEOu3ECO252RNOQmlbGwNNCaOoC7LUFPETu40LEjeMTgD4RrzV/MP6LqyYRIYZyrGkP3tViAM4TZnEx80Zx+vR3VWF0dogcTa/z3GE8Phyj1gd+RBjItYJmSVMFxDoIzkZtZs4h5OCDnqmzlAGpvmW5wMk1jvytcrvtRWo3tL/H0PbG9
+    aws_access_key_id = ASIAV2XAOBJRRVNBXJL2
+    aws_secret_access_key = ew0xROrRLYino1QRx9ds1UXM7iJUjwnx9E3T
+    aws_session_token = FwoGZXIvYXdzEKv//////////wEaDF0S2MnqCAf5Z8Ov6yK9AaQG4G7B/TiV4VCqyJqJr9YA3n7802QTr92WYxKppnODY8d/8efpvPbUX+MspFfCo+szvoqW7fqIh00s/lJTwbQ0HZRboKjNnoEXF5+c+8soOUfKEXjtuU8BLKi73Hq1GEiubqHdHbxTUgWL5nwF9UnC+ilc/n//1qSbuH+Ltbhc6VgUb6ZbQf9Pn1z/6t46wUofOmHZu8qO37qfNh1K9G9qZjTQ/dvGSSnoSzk93uzbOgw4/KPnSjd0uSRBjIt3NiZ7TlpR/ie4GLu3r4k3YPBB3u4UoYbe3VBzxZ/OhBp1bVvH9FaCi4R8sN1
     ```
 
 7. Inspecionar e criar a infraestrutura virtual. Executar *terraform plan* para inspecionar e depois *terraform apply* para criar os recursos.
