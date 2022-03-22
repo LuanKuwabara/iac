@@ -70,8 +70,9 @@ A infraestrutura que o Terraform pode gerenciar inclui componentes de baixo nív
     ```
     $ cat ~/.aws/credentials 
     [default]
-    aws_access_key_id=ASIAY7VWXB2OOVWYLAGN
-    aws_secret_access_key=KBIiKTVfM4weELy/fnyo2whIX1CU1rIzRGAuKrIY
+    aws_access_key_id = ASIAV2XAOBJRRVNBXJL2
+    aws_secret_access_key = ew0xROrRLYino1QRx9ds1UXM7iIjJUjwnx9E3T
+    aws_session_token = FwoGZXIvYXdzEKv//////////wEaDF0S2MnqCAf5Z8Ov6yK9AaQG4G7B/TiV4VCqyJqJr9ERGaET0YA3n7802QTr92WYxKppnODY8d/8efpvPbUX+MspFfCo+szvoqW7fqIh00s/lJTwbQ0HZRboKjNnoEXF5+c+8soOUfKEXjtuU8BLKi73Hq1GEiubqHdHbxTUgWL5nwF9UnC+ilc/n//1qSbuH+Ltbhc6VgUb6ZbQf9Pn1z/6t46wUofOmHZu8qO37qfNh1K9G9qZjTQ/dvGSSnoSzk93uzbOgw4/KPnSjd0uSRBjIt3NiZ7TlpR/ie4GLu3r4k3YPBB3u4UoYbe3VBzxZ/OhBp1bVvH9FaCi4R8sN1
     ```
     
 3. Configurar a região correta (ignorar o resto dos campos):
