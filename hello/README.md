@@ -109,6 +109,10 @@ A infraestrutura que o Terraform pode gerenciar inclui componentes de baixo nív
 
 3. Conferir o conteúdo do [template](https://github.com/FIAP/iac/blob/master/hello/main.tf):
 
+   - Pelo Visual Studio Code:
+   ![main.tf file](/hello/images/main-file.png)
+
+   - Pelo terminal:
     ```
     $ cat main.tf 
     # PROVIDER
@@ -233,9 +237,10 @@ A infraestrutura que o Terraform pode gerenciar inclui componentes de baixo nív
     }
     ```
 
-4. Inicializar o Terraform e o correspondente *provider* (plugin) de AWS:
+4. Abrir o Terminal do Visual Studio Code e inicializar o Terraform com o correspondente *provider* de AWS:
 
     ```
+    $ cd hello/
     $ terraform init
 
     Initializing the backend...
