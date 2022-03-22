@@ -109,13 +109,13 @@ resource "aws_security_group" "Hello_Security_Group" {
 }
 
 # EC2 INSTANCE
-resource "aws_instance" "hello-isntance" {
+resource "aws_instance" "hello-instance" {
     ami                    = "ami-0c02fb55956c7d316"
     instance_type          = "t2.micro"
     subnet_id              = aws_subnet.Hello_Public_Subnet.id
     vpc_security_group_ids = [aws_security_group.Hello_Security_Group.id]
 
     tags = {
-        Name = "hellow-isntance"
+        Name = "hello-instance"
     }
 }
