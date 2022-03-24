@@ -12,7 +12,7 @@ A infraestrutura que o Terraform pode gerenciar inclui componentes de baixo nív
 
 ## Pre-req: Terraform
 
-1. Fazer o *download* do Terraform em https://releases.hashicorp.com/terraform/1.1.7/terraform_1.1.7_windows_amd64.zip
+1. Fazer o *download* do Terraform em https://releases.hashicorp.com/terraform/1.1.7/terraform_1.1.7_windows_386.zip
     
 2. Descomprimir o arquivo baixado no diretório *C:\Windows\System32*
    
