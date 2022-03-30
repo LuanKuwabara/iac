@@ -4,26 +4,22 @@
 
     Para isso, basta clicar no botão Fork que se localiza no canto superior direito da página do repositório.
     
-2. Adicionar no repositório um template básico de Terraform baseado na figura abaixo.
+2. Faça um clone do seu novo repositório para sua máquina local.
 
-    A forma mais simples de fazer isso é simplesmente arrastar os novos aquivos para o seu repositório ou clicar no botão upload files que fica no header.
+3. Criar no repositório um template de Terraform baseado na figura abaixo.
 
     ![Arquitetura](/checkpoint-01/images/arquitetura-nagios.png)
 
-3. Commit.
-
-    Basta colocar uma mensagem com os arquivos que foram adicionados e clicar em commit changes.
-    
-4. Pull request.
+4. Realizar commit no seu repositório.
+  
+5. Realizar um *Pull Request* do seu repositório para o repositório github.com/iac.
 
     Clique no botão pull request do seu repositório.
   
   
 # Organização do repositório
 
-A raiz do repositório deve conter apenas a pasta com o nome do checkpoint-01. Dentro desta pasta, deve conter apenas outras pastas.
-
-Dentro dela organize os materais por nome completo do aluno. Por exemplo:
+A raiz do repositório deve conter apenas o diretório com o nome *checkpoint-01*. Dentro deste diretório, você deve criar um subdiretório com seu *nome completo* e dentro do diretório com seu nome deve conter o template Terraform, conforme exemplo abaixo:
 
 ```
 ├── checkpoint-01
