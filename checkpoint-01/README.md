@@ -10,7 +10,10 @@
 
     ![Arquitetura](/checkpoint-01/images/arquitetura-nagios.png)
     
+    **ATENÇÂO !!!** Para criação das instâncias EC2, utilize o exemplo em ***terraform/ec2-example.tf***
+    
     3.1. Na máquina ***nagios*** instale e configure o software ***Nagios Core***.
+    
     3.2. Na máquina ***node_a*** instale e configure o software ***NCPA***.
 
 4. Realizar ***commit*** no seu repositório.
